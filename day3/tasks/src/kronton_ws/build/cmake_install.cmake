@@ -131,6 +131,7 @@ endif()
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for each subdirectory.
   include("/media/kronton/New Volume/my works/AUC Robotics/day3/tasks/src/kronton_ws/build/gtest/cmake_install.cmake")
+  include("/media/kronton/New Volume/my works/AUC Robotics/day3/tasks/src/kronton_ws/build/kronton/cmake_install.cmake")
 
 endif()
 

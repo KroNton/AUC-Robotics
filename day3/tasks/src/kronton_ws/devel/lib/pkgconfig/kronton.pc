@@ -1,0 +1,8 @@
+prefix=/media/kronton/New Volume/my works/AUC Robotics/day3/tasks/src/kronton_ws/devel
+
+Name: kronton
+Description: Description of kronton
+Version: 0.0.0
+Cflags: 
+Libs: -L${prefix}/lib 
+Requires: 
