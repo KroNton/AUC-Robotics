@@ -37,6 +37,7 @@
 /media/kronton/New Volume/my works/AUC Robotics/day3/tasks/src/kronton_ws/build/gtest/googlemock/gtest/CMakeFiles/rebuild_cache.dir
 /media/kronton/New Volume/my works/AUC Robotics/day3/tasks/src/kronton_ws/build/kronton/CMakeFiles/install/strip.dir
 /media/kronton/New Volume/my works/AUC Robotics/day3/tasks/src/kronton_ws/build/kronton/CMakeFiles/install/local.dir
+/media/kronton/New Volume/my works/AUC Robotics/day3/tasks/src/kronton_ws/build/kronton/CMakeFiles/subscriber.dir
 /media/kronton/New Volume/my works/AUC Robotics/day3/tasks/src/kronton_ws/build/kronton/CMakeFiles/geometry_msgs_generate_messages_py.dir
 /media/kronton/New Volume/my works/AUC Robotics/day3/tasks/src/kronton_ws/build/kronton/CMakeFiles/test.dir
 /media/kronton/New Volume/my works/AUC Robotics/day3/tasks/src/kronton_ws/build/kronton/CMakeFiles/geometry_msgs_generate_messages_lisp.dir

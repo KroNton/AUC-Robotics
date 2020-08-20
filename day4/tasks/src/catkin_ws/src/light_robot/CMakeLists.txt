@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.0.2)
-project(kronton)
+project(light_robot)
 
 ## Compile as C++11, supported in ROS Kinetic and newer
 # add_compile_options(-std=c++11)
@@ -7,9 +7,14 @@ project(kronton)
 ## Find catkin macros and libraries
 ## if COMPONENTS list like find_package(catkin REQUIRED COMPONENTS xyz)
 ## is used, also find other catkin packages
-find_package(catkin REQUIRED COMPONENTS roscpp std_msgs rospy sensor_msgs message_generation
-)
+find_package(catkin REQUIRED COMPONENTS
+  roscpp
+  rospy
+  std_msgs
+  message_generation
+  actionlib_msgs
 
+)
 
 ## System dependencies are found with CMake's conventions
 # find_package(Boost REQUIRED COMPONENTS system)
@@ -45,18 +50,18 @@ find_package(catkin REQUIRED COMPONENTS roscpp std_msgs rospy sensor_msgs messag
 ##   * add every package in MSG_DEP_SET to generate_messages(DEPENDENCIES ...)
 
 ## Generate messages in the 'msg' folder
-# add_message_files(
-#   FILES
-#   Message1.msg
-#   Message2.msg
-# )
+add_message_files(
+   FILES
+   auc.msg
+   #Message2.msg
+ )
 
 ## Generate services in the 'srv' folder
-# add_service_files(
-#   FILES
-#   Service1.srv
+ add_service_files(
+   FILES
+   AddTwoNum.srv
 #   Service2.srv
-# )
+ )
 
 ## Generate actions in the 'action' folder
 # add_action_files(
@@ -66,10 +71,12 @@ find_package(catkin REQUIRED COMPONENTS roscpp std_msgs rospy sensor_msgs messag
 # )
 
 ## Generate added messages and services with any dependencies listed here
-# generate_messages(
-#   DEPENDENCIES
-#   std_msgs  # Or other packages containing msgs
-# )
+generate_messages(
+   DEPENDENCIES
+   std_msgs
+   actionlib_msgs
+   
+ )
 
 ################################################
 ## Declare ROS dynamic reconfigure parameters ##
@@ -101,10 +108,10 @@ find_package(catkin REQUIRED COMPONENTS roscpp std_msgs rospy sensor_msgs messag
 ## CATKIN_DEPENDS: catkin_packages dependent projects also need
 ## DEPENDS: system dependencies of this project that dependent projects also need
 catkin_package(
-#  INCLUDE_DIRS include
-#  LIBRARIES kronton
-#  CATKIN_DEPENDS roscpp std_msgs rospy sensor_msgs message_generation
-#  DEPENDS system_lib
+  INCLUDE_DIRS include
+  LIBRARIES light_robot
+  CATKIN_DEPENDS roscpp rospy std_msgs message_runtime
+  DEPENDS system_lib
 )
 
 ###########
@@ -114,13 +121,20 @@ catkin_package(
 ## Specify additional locations of header files
 ## Your package locations should be listed before other locations
 include_directories(
-# include
-  ${catkin_INCLUDE_DIRS}
+ include ${catkin_INCLUDE_DIRS}
 )
 
+
+add_executable(talker src/talker.cpp)
+target_link_libraries(talker ${catkin_LIBRARIES})
+#add_dependencies(talker light_robot_generate_messages_cpp)
+
+add_executable(listener src/listener.cpp)
+target_link_libraries(listener ${catkin_LIBRARIES})
+#add_dependencies(listener light_robot_generate_messages_cpp)
 ## Declare a C++ library
 # add_library(${PROJECT_NAME}
-#   src/${PROJECT_NAME}/kronton.cpp
+#   src/${PROJECT_NAME}/light_robot.cpp
 # )
 
 ## Add cmake target dependencies of the library
@@ -131,7 +145,7 @@ include_directories(
 ## Declare a C++ executable
 ## With catkin_make all packages are built within a single CMake context
 ## The recommended prefix ensures that target names across packages don't collide
-# add_executable(${PROJECT_NAME}_node src/kronton_node.cpp)
+# add_executable(${PROJECT_NAME}_node src/light_robot_node.cpp)
 
 ## Rename C++ executable without prefix
 ## The above recommended prefix causes long target names, the following renames the
@@ -146,7 +160,7 @@ include_directories(
 ## Specify libraries to link a library or executable target against
 # target_link_libraries(${PROJECT_NAME}_node
 #   ${catkin_LIBRARIES}
-# )
+# ) c
 
 #############
 ## Install ##
@@ -195,14 +209,10 @@ include_directories(
 #############
 
 ## Add gtest based cpp test target and link libraries
-# catkin_add_gtest(${PROJECT_NAME}-test test/test_kronton.cpp)
+# catkin_add_gtest(${PROJECT_NAME}-test test/test_light_robot.cpp)
 # if(TARGET ${PROJECT_NAME}-test)
 #   target_link_libraries(${PROJECT_NAME}-test ${PROJECT_NAME})
 # endif()
 
 ## Add folders to be run by python nosetests
 # catkin_add_nosetests(test)
-
-add_executable(subscriber src/subscriber.cpp)
-target_link_libraries(subscriber ${catkin_LIBRARIES})
-#add_dependencies(listener beginner_tutorials_generate_messages_cpp)

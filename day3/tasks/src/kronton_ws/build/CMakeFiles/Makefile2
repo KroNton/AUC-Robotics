@@ -408,11 +408,12 @@ clean: gtest/googlemock/gtest/CMakeFiles/gtest.dir/clean
 # Directory level rules for directory kronton
 
 # Convenience name for "all" pass in the directory.
-kronton/all:
+kronton/all: kronton/CMakeFiles/subscriber.dir/all
 
 .PHONY : kronton/all
 
 # Convenience name for "clean" pass in the directory.
+kronton/clean: kronton/CMakeFiles/subscriber.dir/clean
 kronton/clean: kronton/CMakeFiles/geometry_msgs_generate_messages_py.dir/clean
 kronton/clean: kronton/CMakeFiles/geometry_msgs_generate_messages_lisp.dir/clean
 kronton/clean: kronton/CMakeFiles/geometry_msgs_generate_messages_cpp.dir/clean
@@ -445,6 +446,43 @@ kronton/clean: kronton/CMakeFiles/std_msgs_generate_messages_py.dir/clean
 kronton/preinstall:
 
 .PHONY : kronton/preinstall
+
+#=============================================================================
+# Target rules for target kronton/CMakeFiles/subscriber.dir
+
+# All Build rule for target.
+kronton/CMakeFiles/subscriber.dir/all:
+	$(MAKE) -f kronton/CMakeFiles/subscriber.dir/build.make kronton/CMakeFiles/subscriber.dir/depend
+	$(MAKE) -f kronton/CMakeFiles/subscriber.dir/build.make kronton/CMakeFiles/subscriber.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir="/media/kronton/New Volume/my works/AUC Robotics/day3/tasks/src/kronton_ws/build/CMakeFiles" --progress-num=12,13 "Built target subscriber"
+.PHONY : kronton/CMakeFiles/subscriber.dir/all
+
+# Include target in all.
+all: kronton/CMakeFiles/subscriber.dir/all
+
+.PHONY : all
+
+# Build rule for subdir invocation for target.
+kronton/CMakeFiles/subscriber.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start "/media/kronton/New Volume/my works/AUC Robotics/day3/tasks/src/kronton_ws/build/CMakeFiles" 2
+	$(MAKE) -f CMakeFiles/Makefile2 kronton/CMakeFiles/subscriber.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start "/media/kronton/New Volume/my works/AUC Robotics/day3/tasks/src/kronton_ws/build/CMakeFiles" 0
+.PHONY : kronton/CMakeFiles/subscriber.dir/rule
+
+# Convenience name for target.
+subscriber: kronton/CMakeFiles/subscriber.dir/rule
+
+.PHONY : subscriber
+
+# clean rule for target.
+kronton/CMakeFiles/subscriber.dir/clean:
+	$(MAKE) -f kronton/CMakeFiles/subscriber.dir/build.make kronton/CMakeFiles/subscriber.dir/clean
+.PHONY : kronton/CMakeFiles/subscriber.dir/clean
+
+# clean rule for target.
+clean: kronton/CMakeFiles/subscriber.dir/clean
+
+.PHONY : clean
 
 #=============================================================================
 # Target rules for target kronton/CMakeFiles/geometry_msgs_generate_messages_py.dir

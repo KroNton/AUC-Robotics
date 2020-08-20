@@ -168,6 +168,21 @@ depend:
 .PHONY : depend
 
 # Convenience name for target.
+kronton/CMakeFiles/subscriber.dir/rule:
+	cd "/media/kronton/New Volume/my works/AUC Robotics/day3/tasks/src/kronton_ws/build" && $(MAKE) -f CMakeFiles/Makefile2 kronton/CMakeFiles/subscriber.dir/rule
+.PHONY : kronton/CMakeFiles/subscriber.dir/rule
+
+# Convenience name for target.
+subscriber: kronton/CMakeFiles/subscriber.dir/rule
+
+.PHONY : subscriber
+
+# fast build rule for target.
+subscriber/fast:
+	cd "/media/kronton/New Volume/my works/AUC Robotics/day3/tasks/src/kronton_ws/build" && $(MAKE) -f kronton/CMakeFiles/subscriber.dir/build.make kronton/CMakeFiles/subscriber.dir/build
+.PHONY : subscriber/fast
+
+# Convenience name for target.
 kronton/CMakeFiles/geometry_msgs_generate_messages_py.dir/rule:
 	cd "/media/kronton/New Volume/my works/AUC Robotics/day3/tasks/src/kronton_ws/build" && $(MAKE) -f CMakeFiles/Makefile2 kronton/CMakeFiles/geometry_msgs_generate_messages_py.dir/rule
 .PHONY : kronton/CMakeFiles/geometry_msgs_generate_messages_py.dir/rule
@@ -542,6 +557,33 @@ std_msgs_generate_messages_py/fast:
 	cd "/media/kronton/New Volume/my works/AUC Robotics/day3/tasks/src/kronton_ws/build" && $(MAKE) -f kronton/CMakeFiles/std_msgs_generate_messages_py.dir/build.make kronton/CMakeFiles/std_msgs_generate_messages_py.dir/build
 .PHONY : std_msgs_generate_messages_py/fast
 
+src/subscriber.o: src/subscriber.cpp.o
+
+.PHONY : src/subscriber.o
+
+# target to build an object file
+src/subscriber.cpp.o:
+	cd "/media/kronton/New Volume/my works/AUC Robotics/day3/tasks/src/kronton_ws/build" && $(MAKE) -f kronton/CMakeFiles/subscriber.dir/build.make kronton/CMakeFiles/subscriber.dir/src/subscriber.cpp.o
+.PHONY : src/subscriber.cpp.o
+
+src/subscriber.i: src/subscriber.cpp.i
+
+.PHONY : src/subscriber.i
+
+# target to preprocess a source file
+src/subscriber.cpp.i:
+	cd "/media/kronton/New Volume/my works/AUC Robotics/day3/tasks/src/kronton_ws/build" && $(MAKE) -f kronton/CMakeFiles/subscriber.dir/build.make kronton/CMakeFiles/subscriber.dir/src/subscriber.cpp.i
+.PHONY : src/subscriber.cpp.i
+
+src/subscriber.s: src/subscriber.cpp.s
+
+.PHONY : src/subscriber.s
+
+# target to generate assembly for a file
+src/subscriber.cpp.s:
+	cd "/media/kronton/New Volume/my works/AUC Robotics/day3/tasks/src/kronton_ws/build" && $(MAKE) -f kronton/CMakeFiles/subscriber.dir/build.make kronton/CMakeFiles/subscriber.dir/src/subscriber.cpp.s
+.PHONY : src/subscriber.cpp.s
+
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -550,6 +592,7 @@ help:
 	@echo "... depend"
 	@echo "... install/strip"
 	@echo "... install/local"
+	@echo "... subscriber"
 	@echo "... geometry_msgs_generate_messages_py"
 	@echo "... test"
 	@echo "... geometry_msgs_generate_messages_lisp"
@@ -580,6 +623,9 @@ help:
 	@echo "... std_msgs_generate_messages_nodejs"
 	@echo "... roscpp_generate_messages_nodejs"
 	@echo "... std_msgs_generate_messages_py"
+	@echo "... src/subscriber.o"
+	@echo "... src/subscriber.i"
+	@echo "... src/subscriber.s"
 .PHONY : help
 
 
