@@ -68,26 +68,17 @@ install/strip/fast: preinstall/fast
 	/usr/bin/cmake -DCMAKE_INSTALL_DO_STRIP=1 -P cmake_install.cmake
 .PHONY : install/strip/fast
 
-# Special rule for the target list_install_components
-list_install_components:
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Available install components are: \"Unspecified\""
-.PHONY : list_install_components
+# Special rule for the target install/local
+install/local: preinstall
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Installing only the local directory..."
+	/usr/bin/cmake -DCMAKE_INSTALL_LOCAL_ONLY=1 -P cmake_install.cmake
+.PHONY : install/local
 
-# Special rule for the target list_install_components
-list_install_components/fast: list_install_components
-
-.PHONY : list_install_components/fast
-
-# Special rule for the target rebuild_cache
-rebuild_cache:
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Running CMake to regenerate build system..."
-	/usr/bin/cmake -H$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR)
-.PHONY : rebuild_cache
-
-# Special rule for the target rebuild_cache
-rebuild_cache/fast: rebuild_cache
-
-.PHONY : rebuild_cache/fast
+# Special rule for the target install/local
+install/local/fast: preinstall/fast
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Installing only the local directory..."
+	/usr/bin/cmake -DCMAKE_INSTALL_LOCAL_ONLY=1 -P cmake_install.cmake
+.PHONY : install/local/fast
 
 # Special rule for the target install
 install: preinstall
@@ -101,28 +92,26 @@ install/fast: preinstall/fast
 	/usr/bin/cmake -P cmake_install.cmake
 .PHONY : install/fast
 
-# Special rule for the target edit_cache
-edit_cache:
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Running CMake cache editor..."
-	/usr/bin/ccmake -H$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR)
-.PHONY : edit_cache
+# Special rule for the target rebuild_cache
+rebuild_cache:
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Running CMake to regenerate build system..."
+	/usr/bin/cmake -H$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR)
+.PHONY : rebuild_cache
 
-# Special rule for the target edit_cache
-edit_cache/fast: edit_cache
+# Special rule for the target rebuild_cache
+rebuild_cache/fast: rebuild_cache
 
-.PHONY : edit_cache/fast
+.PHONY : rebuild_cache/fast
 
-# Special rule for the target install/local
-install/local: preinstall
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Installing only the local directory..."
-	/usr/bin/cmake -DCMAKE_INSTALL_LOCAL_ONLY=1 -P cmake_install.cmake
-.PHONY : install/local
+# Special rule for the target list_install_components
+list_install_components:
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Available install components are: \"Unspecified\""
+.PHONY : list_install_components
 
-# Special rule for the target install/local
-install/local/fast: preinstall/fast
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Installing only the local directory..."
-	/usr/bin/cmake -DCMAKE_INSTALL_LOCAL_ONLY=1 -P cmake_install.cmake
-.PHONY : install/local/fast
+# Special rule for the target list_install_components
+list_install_components/fast: list_install_components
+
+.PHONY : list_install_components/fast
 
 # Special rule for the target test
 test:
@@ -134,6 +123,17 @@ test:
 test/fast: test
 
 .PHONY : test/fast
+
+# Special rule for the target edit_cache
+edit_cache:
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Running CMake cache editor..."
+	/usr/bin/ccmake -H$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR)
+.PHONY : edit_cache
+
+# Special rule for the target edit_cache
+edit_cache/fast: edit_cache
+
+.PHONY : edit_cache/fast
 
 # The main all target
 all: cmake_check_build_system
@@ -168,19 +168,94 @@ depend:
 .PHONY : depend
 
 # Convenience name for target.
-src/ball_chaser/CMakeFiles/_ball_chaser_generate_messages_check_deps_DriveToTarget.dir/rule:
-	cd "/media/kronton/New Volume/my works/AUC Robotics/day3/tasks/src/catkin_ws/build" && $(MAKE) -f CMakeFiles/Makefile2 src/ball_chaser/CMakeFiles/_ball_chaser_generate_messages_check_deps_DriveToTarget.dir/rule
-.PHONY : src/ball_chaser/CMakeFiles/_ball_chaser_generate_messages_check_deps_DriveToTarget.dir/rule
+src/ball_chaser/CMakeFiles/ball_chaser_geneus.dir/rule:
+	cd "/media/kronton/New Volume/my works/AUC Robotics/day3/tasks/src/catkin_ws/build" && $(MAKE) -f CMakeFiles/Makefile2 src/ball_chaser/CMakeFiles/ball_chaser_geneus.dir/rule
+.PHONY : src/ball_chaser/CMakeFiles/ball_chaser_geneus.dir/rule
 
 # Convenience name for target.
-_ball_chaser_generate_messages_check_deps_DriveToTarget: src/ball_chaser/CMakeFiles/_ball_chaser_generate_messages_check_deps_DriveToTarget.dir/rule
+ball_chaser_geneus: src/ball_chaser/CMakeFiles/ball_chaser_geneus.dir/rule
 
-.PHONY : _ball_chaser_generate_messages_check_deps_DriveToTarget
+.PHONY : ball_chaser_geneus
 
 # fast build rule for target.
-_ball_chaser_generate_messages_check_deps_DriveToTarget/fast:
-	cd "/media/kronton/New Volume/my works/AUC Robotics/day3/tasks/src/catkin_ws/build" && $(MAKE) -f src/ball_chaser/CMakeFiles/_ball_chaser_generate_messages_check_deps_DriveToTarget.dir/build.make src/ball_chaser/CMakeFiles/_ball_chaser_generate_messages_check_deps_DriveToTarget.dir/build
-.PHONY : _ball_chaser_generate_messages_check_deps_DriveToTarget/fast
+ball_chaser_geneus/fast:
+	cd "/media/kronton/New Volume/my works/AUC Robotics/day3/tasks/src/catkin_ws/build" && $(MAKE) -f src/ball_chaser/CMakeFiles/ball_chaser_geneus.dir/build.make src/ball_chaser/CMakeFiles/ball_chaser_geneus.dir/build
+.PHONY : ball_chaser_geneus/fast
+
+# Convenience name for target.
+src/ball_chaser/CMakeFiles/ball_chaser_generate_messages_cpp.dir/rule:
+	cd "/media/kronton/New Volume/my works/AUC Robotics/day3/tasks/src/catkin_ws/build" && $(MAKE) -f CMakeFiles/Makefile2 src/ball_chaser/CMakeFiles/ball_chaser_generate_messages_cpp.dir/rule
+.PHONY : src/ball_chaser/CMakeFiles/ball_chaser_generate_messages_cpp.dir/rule
+
+# Convenience name for target.
+ball_chaser_generate_messages_cpp: src/ball_chaser/CMakeFiles/ball_chaser_generate_messages_cpp.dir/rule
+
+.PHONY : ball_chaser_generate_messages_cpp
+
+# fast build rule for target.
+ball_chaser_generate_messages_cpp/fast:
+	cd "/media/kronton/New Volume/my works/AUC Robotics/day3/tasks/src/catkin_ws/build" && $(MAKE) -f src/ball_chaser/CMakeFiles/ball_chaser_generate_messages_cpp.dir/build.make src/ball_chaser/CMakeFiles/ball_chaser_generate_messages_cpp.dir/build
+.PHONY : ball_chaser_generate_messages_cpp/fast
+
+# Convenience name for target.
+src/ball_chaser/CMakeFiles/drive_bot.dir/rule:
+	cd "/media/kronton/New Volume/my works/AUC Robotics/day3/tasks/src/catkin_ws/build" && $(MAKE) -f CMakeFiles/Makefile2 src/ball_chaser/CMakeFiles/drive_bot.dir/rule
+.PHONY : src/ball_chaser/CMakeFiles/drive_bot.dir/rule
+
+# Convenience name for target.
+drive_bot: src/ball_chaser/CMakeFiles/drive_bot.dir/rule
+
+.PHONY : drive_bot
+
+# fast build rule for target.
+drive_bot/fast:
+	cd "/media/kronton/New Volume/my works/AUC Robotics/day3/tasks/src/catkin_ws/build" && $(MAKE) -f src/ball_chaser/CMakeFiles/drive_bot.dir/build.make src/ball_chaser/CMakeFiles/drive_bot.dir/build
+.PHONY : drive_bot/fast
+
+# Convenience name for target.
+src/ball_chaser/CMakeFiles/ball_chaser_generate_messages_eus.dir/rule:
+	cd "/media/kronton/New Volume/my works/AUC Robotics/day3/tasks/src/catkin_ws/build" && $(MAKE) -f CMakeFiles/Makefile2 src/ball_chaser/CMakeFiles/ball_chaser_generate_messages_eus.dir/rule
+.PHONY : src/ball_chaser/CMakeFiles/ball_chaser_generate_messages_eus.dir/rule
+
+# Convenience name for target.
+ball_chaser_generate_messages_eus: src/ball_chaser/CMakeFiles/ball_chaser_generate_messages_eus.dir/rule
+
+.PHONY : ball_chaser_generate_messages_eus
+
+# fast build rule for target.
+ball_chaser_generate_messages_eus/fast:
+	cd "/media/kronton/New Volume/my works/AUC Robotics/day3/tasks/src/catkin_ws/build" && $(MAKE) -f src/ball_chaser/CMakeFiles/ball_chaser_generate_messages_eus.dir/build.make src/ball_chaser/CMakeFiles/ball_chaser_generate_messages_eus.dir/build
+.PHONY : ball_chaser_generate_messages_eus/fast
+
+# Convenience name for target.
+src/ball_chaser/CMakeFiles/ball_chaser_gennodejs.dir/rule:
+	cd "/media/kronton/New Volume/my works/AUC Robotics/day3/tasks/src/catkin_ws/build" && $(MAKE) -f CMakeFiles/Makefile2 src/ball_chaser/CMakeFiles/ball_chaser_gennodejs.dir/rule
+.PHONY : src/ball_chaser/CMakeFiles/ball_chaser_gennodejs.dir/rule
+
+# Convenience name for target.
+ball_chaser_gennodejs: src/ball_chaser/CMakeFiles/ball_chaser_gennodejs.dir/rule
+
+.PHONY : ball_chaser_gennodejs
+
+# fast build rule for target.
+ball_chaser_gennodejs/fast:
+	cd "/media/kronton/New Volume/my works/AUC Robotics/day3/tasks/src/catkin_ws/build" && $(MAKE) -f src/ball_chaser/CMakeFiles/ball_chaser_gennodejs.dir/build.make src/ball_chaser/CMakeFiles/ball_chaser_gennodejs.dir/build
+.PHONY : ball_chaser_gennodejs/fast
+
+# Convenience name for target.
+src/ball_chaser/CMakeFiles/ball_chaser_gencpp.dir/rule:
+	cd "/media/kronton/New Volume/my works/AUC Robotics/day3/tasks/src/catkin_ws/build" && $(MAKE) -f CMakeFiles/Makefile2 src/ball_chaser/CMakeFiles/ball_chaser_gencpp.dir/rule
+.PHONY : src/ball_chaser/CMakeFiles/ball_chaser_gencpp.dir/rule
+
+# Convenience name for target.
+ball_chaser_gencpp: src/ball_chaser/CMakeFiles/ball_chaser_gencpp.dir/rule
+
+.PHONY : ball_chaser_gencpp
+
+# fast build rule for target.
+ball_chaser_gencpp/fast:
+	cd "/media/kronton/New Volume/my works/AUC Robotics/day3/tasks/src/catkin_ws/build" && $(MAKE) -f src/ball_chaser/CMakeFiles/ball_chaser_gencpp.dir/build.make src/ball_chaser/CMakeFiles/ball_chaser_gencpp.dir/build
+.PHONY : ball_chaser_gencpp/fast
 
 # Convenience name for target.
 src/ball_chaser/CMakeFiles/ball_chaser_generate_messages.dir/rule:
@@ -198,19 +273,94 @@ ball_chaser_generate_messages/fast:
 .PHONY : ball_chaser_generate_messages/fast
 
 # Convenience name for target.
-src/ball_chaser/CMakeFiles/drive_bot.dir/rule:
-	cd "/media/kronton/New Volume/my works/AUC Robotics/day3/tasks/src/catkin_ws/build" && $(MAKE) -f CMakeFiles/Makefile2 src/ball_chaser/CMakeFiles/drive_bot.dir/rule
-.PHONY : src/ball_chaser/CMakeFiles/drive_bot.dir/rule
+src/ball_chaser/CMakeFiles/ball_chaser_generate_messages_lisp.dir/rule:
+	cd "/media/kronton/New Volume/my works/AUC Robotics/day3/tasks/src/catkin_ws/build" && $(MAKE) -f CMakeFiles/Makefile2 src/ball_chaser/CMakeFiles/ball_chaser_generate_messages_lisp.dir/rule
+.PHONY : src/ball_chaser/CMakeFiles/ball_chaser_generate_messages_lisp.dir/rule
 
 # Convenience name for target.
-drive_bot: src/ball_chaser/CMakeFiles/drive_bot.dir/rule
+ball_chaser_generate_messages_lisp: src/ball_chaser/CMakeFiles/ball_chaser_generate_messages_lisp.dir/rule
 
-.PHONY : drive_bot
+.PHONY : ball_chaser_generate_messages_lisp
 
 # fast build rule for target.
-drive_bot/fast:
-	cd "/media/kronton/New Volume/my works/AUC Robotics/day3/tasks/src/catkin_ws/build" && $(MAKE) -f src/ball_chaser/CMakeFiles/drive_bot.dir/build.make src/ball_chaser/CMakeFiles/drive_bot.dir/build
-.PHONY : drive_bot/fast
+ball_chaser_generate_messages_lisp/fast:
+	cd "/media/kronton/New Volume/my works/AUC Robotics/day3/tasks/src/catkin_ws/build" && $(MAKE) -f src/ball_chaser/CMakeFiles/ball_chaser_generate_messages_lisp.dir/build.make src/ball_chaser/CMakeFiles/ball_chaser_generate_messages_lisp.dir/build
+.PHONY : ball_chaser_generate_messages_lisp/fast
+
+# Convenience name for target.
+src/ball_chaser/CMakeFiles/ball_chaser_genpy.dir/rule:
+	cd "/media/kronton/New Volume/my works/AUC Robotics/day3/tasks/src/catkin_ws/build" && $(MAKE) -f CMakeFiles/Makefile2 src/ball_chaser/CMakeFiles/ball_chaser_genpy.dir/rule
+.PHONY : src/ball_chaser/CMakeFiles/ball_chaser_genpy.dir/rule
+
+# Convenience name for target.
+ball_chaser_genpy: src/ball_chaser/CMakeFiles/ball_chaser_genpy.dir/rule
+
+.PHONY : ball_chaser_genpy
+
+# fast build rule for target.
+ball_chaser_genpy/fast:
+	cd "/media/kronton/New Volume/my works/AUC Robotics/day3/tasks/src/catkin_ws/build" && $(MAKE) -f src/ball_chaser/CMakeFiles/ball_chaser_genpy.dir/build.make src/ball_chaser/CMakeFiles/ball_chaser_genpy.dir/build
+.PHONY : ball_chaser_genpy/fast
+
+# Convenience name for target.
+src/ball_chaser/CMakeFiles/ball_chaser_genlisp.dir/rule:
+	cd "/media/kronton/New Volume/my works/AUC Robotics/day3/tasks/src/catkin_ws/build" && $(MAKE) -f CMakeFiles/Makefile2 src/ball_chaser/CMakeFiles/ball_chaser_genlisp.dir/rule
+.PHONY : src/ball_chaser/CMakeFiles/ball_chaser_genlisp.dir/rule
+
+# Convenience name for target.
+ball_chaser_genlisp: src/ball_chaser/CMakeFiles/ball_chaser_genlisp.dir/rule
+
+.PHONY : ball_chaser_genlisp
+
+# fast build rule for target.
+ball_chaser_genlisp/fast:
+	cd "/media/kronton/New Volume/my works/AUC Robotics/day3/tasks/src/catkin_ws/build" && $(MAKE) -f src/ball_chaser/CMakeFiles/ball_chaser_genlisp.dir/build.make src/ball_chaser/CMakeFiles/ball_chaser_genlisp.dir/build
+.PHONY : ball_chaser_genlisp/fast
+
+# Convenience name for target.
+src/ball_chaser/CMakeFiles/ball_chaser_generate_messages_py.dir/rule:
+	cd "/media/kronton/New Volume/my works/AUC Robotics/day3/tasks/src/catkin_ws/build" && $(MAKE) -f CMakeFiles/Makefile2 src/ball_chaser/CMakeFiles/ball_chaser_generate_messages_py.dir/rule
+.PHONY : src/ball_chaser/CMakeFiles/ball_chaser_generate_messages_py.dir/rule
+
+# Convenience name for target.
+ball_chaser_generate_messages_py: src/ball_chaser/CMakeFiles/ball_chaser_generate_messages_py.dir/rule
+
+.PHONY : ball_chaser_generate_messages_py
+
+# fast build rule for target.
+ball_chaser_generate_messages_py/fast:
+	cd "/media/kronton/New Volume/my works/AUC Robotics/day3/tasks/src/catkin_ws/build" && $(MAKE) -f src/ball_chaser/CMakeFiles/ball_chaser_generate_messages_py.dir/build.make src/ball_chaser/CMakeFiles/ball_chaser_generate_messages_py.dir/build
+.PHONY : ball_chaser_generate_messages_py/fast
+
+# Convenience name for target.
+src/ball_chaser/CMakeFiles/ball_chaser_generate_messages_nodejs.dir/rule:
+	cd "/media/kronton/New Volume/my works/AUC Robotics/day3/tasks/src/catkin_ws/build" && $(MAKE) -f CMakeFiles/Makefile2 src/ball_chaser/CMakeFiles/ball_chaser_generate_messages_nodejs.dir/rule
+.PHONY : src/ball_chaser/CMakeFiles/ball_chaser_generate_messages_nodejs.dir/rule
+
+# Convenience name for target.
+ball_chaser_generate_messages_nodejs: src/ball_chaser/CMakeFiles/ball_chaser_generate_messages_nodejs.dir/rule
+
+.PHONY : ball_chaser_generate_messages_nodejs
+
+# fast build rule for target.
+ball_chaser_generate_messages_nodejs/fast:
+	cd "/media/kronton/New Volume/my works/AUC Robotics/day3/tasks/src/catkin_ws/build" && $(MAKE) -f src/ball_chaser/CMakeFiles/ball_chaser_generate_messages_nodejs.dir/build.make src/ball_chaser/CMakeFiles/ball_chaser_generate_messages_nodejs.dir/build
+.PHONY : ball_chaser_generate_messages_nodejs/fast
+
+# Convenience name for target.
+src/ball_chaser/CMakeFiles/_ball_chaser_generate_messages_check_deps_DriveToTarget.dir/rule:
+	cd "/media/kronton/New Volume/my works/AUC Robotics/day3/tasks/src/catkin_ws/build" && $(MAKE) -f CMakeFiles/Makefile2 src/ball_chaser/CMakeFiles/_ball_chaser_generate_messages_check_deps_DriveToTarget.dir/rule
+.PHONY : src/ball_chaser/CMakeFiles/_ball_chaser_generate_messages_check_deps_DriveToTarget.dir/rule
+
+# Convenience name for target.
+_ball_chaser_generate_messages_check_deps_DriveToTarget: src/ball_chaser/CMakeFiles/_ball_chaser_generate_messages_check_deps_DriveToTarget.dir/rule
+
+.PHONY : _ball_chaser_generate_messages_check_deps_DriveToTarget
+
+# fast build rule for target.
+_ball_chaser_generate_messages_check_deps_DriveToTarget/fast:
+	cd "/media/kronton/New Volume/my works/AUC Robotics/day3/tasks/src/catkin_ws/build" && $(MAKE) -f src/ball_chaser/CMakeFiles/_ball_chaser_generate_messages_check_deps_DriveToTarget.dir/build.make src/ball_chaser/CMakeFiles/_ball_chaser_generate_messages_check_deps_DriveToTarget.dir/build
+.PHONY : _ball_chaser_generate_messages_check_deps_DriveToTarget/fast
 
 # Convenience name for target.
 src/ball_chaser/CMakeFiles/process_image.dir/rule:
@@ -288,16 +438,26 @@ help:
 	@echo "... clean"
 	@echo "... depend"
 	@echo "... install/strip"
-	@echo "... list_install_components"
-	@echo "... rebuild_cache"
-	@echo "... _ball_chaser_generate_messages_check_deps_DriveToTarget"
-	@echo "... ball_chaser_generate_messages"
-	@echo "... install"
-	@echo "... drive_bot"
-	@echo "... edit_cache"
 	@echo "... install/local"
+	@echo "... install"
+	@echo "... ball_chaser_geneus"
+	@echo "... ball_chaser_generate_messages_cpp"
+	@echo "... drive_bot"
+	@echo "... rebuild_cache"
+	@echo "... ball_chaser_generate_messages_eus"
+	@echo "... ball_chaser_gennodejs"
+	@echo "... ball_chaser_gencpp"
+	@echo "... ball_chaser_generate_messages"
+	@echo "... ball_chaser_generate_messages_lisp"
+	@echo "... ball_chaser_genpy"
+	@echo "... ball_chaser_genlisp"
+	@echo "... ball_chaser_generate_messages_py"
+	@echo "... list_install_components"
+	@echo "... ball_chaser_generate_messages_nodejs"
+	@echo "... _ball_chaser_generate_messages_check_deps_DriveToTarget"
 	@echo "... process_image"
 	@echo "... test"
+	@echo "... edit_cache"
 	@echo "... src/drive_bot.o"
 	@echo "... src/drive_bot.i"
 	@echo "... src/drive_bot.s"

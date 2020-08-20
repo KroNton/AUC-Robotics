@@ -338,6 +338,9 @@ googletest-distribution_SOURCE_DIR:STATIC=/usr/src/googletest
 //Value Computed by CMake
 gtest_BINARY_DIR:STATIC=/media/kronton/New Volume/my works/AUC Robotics/day3/tasks/src/catkin_ws/build/gtest/googlemock/gtest
 
+//The directory containing a CMake configuration file for gtest.
+gtest_DIR:PATH=gtest_DIR-NOTFOUND
+
 //Dependencies for the target
 gtest_LIB_DEPENDS:STATIC=general;-lpthread;
 

@@ -6,6 +6,46 @@
 
 #IncludeRegexTransform: 
 
+/media/kronton/New Volume/my works/AUC Robotics/day3/tasks/src/catkin_ws/devel/include/ball_chaser/DriveToTarget.h
+ros/service_traits.h
+-
+ball_chaser/DriveToTargetRequest.h
+-
+ball_chaser/DriveToTargetResponse.h
+-
+
+/media/kronton/New Volume/my works/AUC Robotics/day3/tasks/src/catkin_ws/devel/include/ball_chaser/DriveToTargetRequest.h
+string
+-
+vector
+-
+map
+-
+ros/types.h
+-
+ros/serialization.h
+-
+ros/builtin_message_traits.h
+-
+ros/message_operations.h
+-
+
+/media/kronton/New Volume/my works/AUC Robotics/day3/tasks/src/catkin_ws/devel/include/ball_chaser/DriveToTargetResponse.h
+string
+-
+vector
+-
+map
+-
+ros/types.h
+-
+ros/serialization.h
+-
+ros/builtin_message_traits.h
+-
+ros/message_operations.h
+-
+
 /media/kronton/New Volume/my works/AUC Robotics/day3/tasks/src/catkin_ws/src/src/ball_chaser/src/process_image.cpp
 ros/ros.h
 /media/kronton/New Volume/my works/AUC Robotics/day3/tasks/src/catkin_ws/src/src/ball_chaser/src/ros/ros.h

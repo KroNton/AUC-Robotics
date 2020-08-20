@@ -3,6 +3,6 @@ prefix=/media/kronton/New Volume/my works/AUC Robotics/day3/tasks/src/catkin_ws/
 Name: ball_chaser
 Description: Description of ball_chaser
 Version: 0.0.0
-Cflags: 
+Cflags: -I${prefix}/include
 Libs: -L${prefix}/lib 
 Requires: 
