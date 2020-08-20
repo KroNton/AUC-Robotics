@@ -1,0 +1,2 @@
+src/ball_chaser:src/my_robot
+-DCATKIN_DEVEL_PREFIX=/media/kronton/New Volume/my works/AUC Robotics/day3/tasks/src/catkin_ws/devel -DCMAKE_INSTALL_PREFIX=/media/kronton/New Volume/my works/AUC Robotics/day3/tasks/src/catkin_ws/install -G Unix Makefiles

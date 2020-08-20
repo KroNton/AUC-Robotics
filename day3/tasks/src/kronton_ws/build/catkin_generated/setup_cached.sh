@@ -7,4 +7,3 @@
 # new environment variables
 
 # modified environment variables
-export PKG_CONFIG_PATH="/media/kronton/New Volume/my works/AUC Robotics/day3/tasks/src/kronton_ws/devel/lib/pkgconfig:$PKG_CONFIG_PATH"
