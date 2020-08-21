@@ -1,0 +1,8 @@
+prefix=/media/kronton/New Volume/my works/AUC Robotics/day4/tasks/src/kronton_ws/install
+
+Name: kronton_serv
+Description: Description of kronton_serv
+Version: 0.0.0
+Cflags: -I${prefix}/include
+Libs: -L${prefix}/lib 
+Requires: 
