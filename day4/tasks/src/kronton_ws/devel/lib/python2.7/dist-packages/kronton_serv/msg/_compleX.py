@@ -7,12 +7,13 @@ import struct
 
 
 class compleX(genpy.Message):
-  _md5sum = "57d3c40ec3ac3754af76a83e6e73127a"
+  _md5sum = "4f0be08c1f5d8c27359864de9d5522d0"
   _type = "kronton_serv/compleX"
   _has_header = False  # flag to mark the presence of a Header object
-  _full_text = """int64 num"""
-  __slots__ = ['num']
-  _slot_types = ['int64']
+  _full_text = """float32 r
+float32 i"""
+  __slots__ = ['r','i']
+  _slot_types = ['float32','float32']
 
   def __init__(self, *args, **kwds):
     """
@@ -22,7 +23,7 @@ class compleX(genpy.Message):
     changes.  You cannot mix in-order arguments and keyword arguments.
 
     The available fields are:
-       num
+       r,i
 
     :param args: complete set of field values, in .msg order
     :param kwds: use keyword arguments corresponding to message field names
@@ -31,10 +32,13 @@ class compleX(genpy.Message):
     if args or kwds:
       super(compleX, self).__init__(*args, **kwds)
       # message fields cannot be None, assign default values for those that are
-      if self.num is None:
-        self.num = 0
+      if self.r is None:
+        self.r = 0.
+      if self.i is None:
+        self.i = 0.
     else:
-      self.num = 0
+      self.r = 0.
+      self.i = 0.
 
   def _get_types(self):
     """
@@ -48,8 +52,8 @@ class compleX(genpy.Message):
     :param buff: buffer, ``StringIO``
     """
     try:
-      _x = self.num
-      buff.write(_get_struct_q().pack(_x))
+      _x = self
+      buff.write(_get_struct_2f().pack(_x.r, _x.i))
     except struct.error as se: self._check_types(struct.error("%s: '%s' when writing '%s'" % (type(se), str(se), str(locals().get('_x', self)))))
     except TypeError as te: self._check_types(ValueError("%s: '%s' when writing '%s'" % (type(te), str(te), str(locals().get('_x', self)))))
 
@@ -60,9 +64,10 @@ class compleX(genpy.Message):
     """
     try:
       end = 0
+      _x = self
       start = end
       end += 8
-      (self.num,) = _get_struct_q().unpack(str[start:end])
+      (_x.r, _x.i,) = _get_struct_2f().unpack(str[start:end])
       return self
     except struct.error as e:
       raise genpy.DeserializationError(e)  # most likely buffer underfill
@@ -75,8 +80,8 @@ class compleX(genpy.Message):
     :param numpy: numpy python module
     """
     try:
-      _x = self.num
-      buff.write(_get_struct_q().pack(_x))
+      _x = self
+      buff.write(_get_struct_2f().pack(_x.r, _x.i))
     except struct.error as se: self._check_types(struct.error("%s: '%s' when writing '%s'" % (type(se), str(se), str(locals().get('_x', self)))))
     except TypeError as te: self._check_types(ValueError("%s: '%s' when writing '%s'" % (type(te), str(te), str(locals().get('_x', self)))))
 
@@ -88,9 +93,10 @@ class compleX(genpy.Message):
     """
     try:
       end = 0
+      _x = self
       start = end
       end += 8
-      (self.num,) = _get_struct_q().unpack(str[start:end])
+      (_x.r, _x.i,) = _get_struct_2f().unpack(str[start:end])
       return self
     except struct.error as e:
       raise genpy.DeserializationError(e)  # most likely buffer underfill
@@ -99,9 +105,9 @@ _struct_I = genpy.struct_I
 def _get_struct_I():
     global _struct_I
     return _struct_I
-_struct_q = None
-def _get_struct_q():
-    global _struct_q
-    if _struct_q is None:
-        _struct_q = struct.Struct("<q")
-    return _struct_q
+_struct_2f = None
+def _get_struct_2f():
+    global _struct_2f
+    if _struct_2f is None:
+        _struct_2f = struct.Struct("<2f")
+    return _struct_2f

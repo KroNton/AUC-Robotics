@@ -24,17 +24,22 @@ struct compleX_
   typedef compleX_<ContainerAllocator> Type;
 
   compleX_()
-    : num(0)  {
+    : r(0.0)
+    , i(0.0)  {
     }
   compleX_(const ContainerAllocator& _alloc)
-    : num(0)  {
+    : r(0.0)
+    , i(0.0)  {
   (void)_alloc;
     }
 
 
 
-   typedef int64_t _num_type;
-  _num_type num;
+   typedef float _r_type;
+  _r_type r;
+
+   typedef float _i_type;
+  _i_type i;
 
 
 
@@ -65,7 +70,8 @@ return s;
 template<typename ContainerAllocator1, typename ContainerAllocator2>
 bool operator==(const ::kronton_serv::compleX_<ContainerAllocator1> & lhs, const ::kronton_serv::compleX_<ContainerAllocator2> & rhs)
 {
-  return lhs.num == rhs.num;
+  return lhs.r == rhs.r &&
+    lhs.i == rhs.i;
 }
 
 template<typename ContainerAllocator1, typename ContainerAllocator2>
@@ -122,12 +128,12 @@ struct MD5Sum< ::kronton_serv::compleX_<ContainerAllocator> >
 {
   static const char* value()
   {
-    return "57d3c40ec3ac3754af76a83e6e73127a";
+    return "4f0be08c1f5d8c27359864de9d5522d0";
   }
 
   static const char* value(const ::kronton_serv::compleX_<ContainerAllocator>&) { return value(); }
-  static const uint64_t static_value1 = 0x57d3c40ec3ac3754ULL;
-  static const uint64_t static_value2 = 0xaf76a83e6e73127aULL;
+  static const uint64_t static_value1 = 0x4f0be08c1f5d8c27ULL;
+  static const uint64_t static_value2 = 0x359864de9d5522d0ULL;
 };
 
 template<class ContainerAllocator>
@@ -146,7 +152,8 @@ struct Definition< ::kronton_serv::compleX_<ContainerAllocator> >
 {
   static const char* value()
   {
-    return "int64 num\n"
+    return "float32 r\n"
+"float32 i\n"
 ;
   }
 
@@ -165,7 +172,8 @@ namespace serialization
   {
     template<typename Stream, typename T> inline static void allInOne(Stream& stream, T m)
     {
-      stream.next(m.num);
+      stream.next(m.r);
+      stream.next(m.i);
     }
 
     ROS_DECLARE_ALLINONE_SERIALIZER
@@ -184,8 +192,10 @@ struct Printer< ::kronton_serv::compleX_<ContainerAllocator> >
 {
   template<typename Stream> static void stream(Stream& s, const std::string& indent, const ::kronton_serv::compleX_<ContainerAllocator>& v)
   {
-    s << indent << "num: ";
-    Printer<int64_t>::stream(s, indent + "  ", v.num);
+    s << indent << "r: ";
+    Printer<float>::stream(s, indent + "  ", v.r);
+    s << indent << "i: ";
+    Printer<float>::stream(s, indent + "  ", v.i);
   }
 };
 

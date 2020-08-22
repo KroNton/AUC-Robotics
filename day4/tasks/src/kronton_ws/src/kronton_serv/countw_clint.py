@@ -3,26 +3,21 @@
 from __future__ import print_function
 import sys
 import rospy
-from kronton_serv.srv import *
+from kronton_serv.srv import count
+from kronton_serv.srv import countRequest
+from kronton_serv.srv import countResponse
+
 
 def add_sentence_client(s):
-    rospy.wait_for_service('count_words')
+    rospy.wait_for_service('count_words_num')
     try:
-        count_words = rospy.ServiceProxy('count_words', count)
-        resp1 = count_words(sen)
+        count_words = rospy.ServiceProxy('count_words_num', count)
+        resp1 = count_words(s)
         return resp1.count
     except rospy.ServiceException as e:
         print("Service call failed: %s"%e)
 
-def usage():
-    return "%s [sen]"%sys.argv[0]
-
-if __name__ == "__main__":
-    if len(sys.argv) == 2:
-        s = int(sys.argv[1])
-        
-    else:
-        print(usage())
-        sys.exit(1)
-    print("Requesting %s"%(sen))
-    print("%s has %s words"%( sen, add_sentence_client(sen)))
+s = str(sys.argv[1:])
+       
+print("Requesting %s"%(s))
+print("%s has %s words"%( s, add_sentence_client(s)))

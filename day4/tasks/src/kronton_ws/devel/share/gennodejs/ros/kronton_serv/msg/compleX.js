@@ -18,22 +18,31 @@ class compleX {
   constructor(initObj={}) {
     if (initObj === null) {
       // initObj === null is a special case for deserialization where we don't initialize fields
-      this.num = null;
+      this.r = null;
+      this.i = null;
     }
     else {
-      if (initObj.hasOwnProperty('num')) {
-        this.num = initObj.num
+      if (initObj.hasOwnProperty('r')) {
+        this.r = initObj.r
       }
       else {
-        this.num = 0;
+        this.r = 0.0;
+      }
+      if (initObj.hasOwnProperty('i')) {
+        this.i = initObj.i
+      }
+      else {
+        this.i = 0.0;
       }
     }
   }
 
   static serialize(obj, buffer, bufferOffset) {
     // Serializes a message object of type compleX
-    // Serialize message field [num]
-    bufferOffset = _serializer.int64(obj.num, buffer, bufferOffset);
+    // Serialize message field [r]
+    bufferOffset = _serializer.float32(obj.r, buffer, bufferOffset);
+    // Serialize message field [i]
+    bufferOffset = _serializer.float32(obj.i, buffer, bufferOffset);
     return bufferOffset;
   }
 
@@ -41,8 +50,10 @@ class compleX {
     //deserializes a message object of type compleX
     let len;
     let data = new compleX(null);
-    // Deserialize message field [num]
-    data.num = _deserializer.int64(buffer, bufferOffset);
+    // Deserialize message field [r]
+    data.r = _deserializer.float32(buffer, bufferOffset);
+    // Deserialize message field [i]
+    data.i = _deserializer.float32(buffer, bufferOffset);
     return data;
   }
 
@@ -57,13 +68,14 @@ class compleX {
 
   static md5sum() {
     //Returns md5sum for a message object
-    return '57d3c40ec3ac3754af76a83e6e73127a';
+    return '4f0be08c1f5d8c27359864de9d5522d0';
   }
 
   static messageDefinition() {
     // Returns full string definition for message
     return `
-    int64 num
+    float32 r
+    float32 i
     `;
   }
 
@@ -73,11 +85,18 @@ class compleX {
       msg = {};
     }
     const resolved = new compleX(null);
-    if (msg.num !== undefined) {
-      resolved.num = msg.num;
+    if (msg.r !== undefined) {
+      resolved.r = msg.r;
     }
     else {
-      resolved.num = 0
+      resolved.r = 0.0
+    }
+
+    if (msg.i !== undefined) {
+      resolved.i = msg.i;
+    }
+    else {
+      resolved.i = 0.0
     }
 
     return resolved;

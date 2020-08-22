@@ -3,7 +3,7 @@ import rospy
 from kronton_serv.msg import compleX
 
 def callback(data):
-    rospy.loginfo("the complex number is : %f real % imag " % (data.num))
+    rospy.loginfo("the complex number is : %f real %f imag " % (data.r,data.i))
 
 def listener():
     rospy.init_node('custom_listener', anonymous=True)

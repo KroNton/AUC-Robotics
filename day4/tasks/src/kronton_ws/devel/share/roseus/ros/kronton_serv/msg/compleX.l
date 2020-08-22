@@ -14,69 +14,61 @@
 
 (defclass kronton_serv::compleX
   :super ros::object
-  :slots (_num ))
+  :slots (_r _i ))
 
 (defmethod kronton_serv::compleX
   (:init
    (&key
-    ((:num __num) 0)
+    ((:r __r) 0.0)
+    ((:i __i) 0.0)
     )
    (send-super :init)
-   (setq _num (round __num))
+   (setq _r (float __r))
+   (setq _i (float __i))
    self)
-  (:num
-   (&optional __num)
-   (if __num (setq _num __num)) _num)
+  (:r
+   (&optional __r)
+   (if __r (setq _r __r)) _r)
+  (:i
+   (&optional __i)
+   (if __i (setq _i __i)) _i)
   (:serialization-length
    ()
    (+
-    ;; int64 _num
-    8
+    ;; float32 _r
+    4
+    ;; float32 _i
+    4
     ))
   (:serialize
    (&optional strm)
    (let ((s (if strm strm
               (make-string-output-stream (send self :serialization-length)))))
-     ;; int64 _num
-#+(or :alpha :irix6 :x86_64)
-       (progn (sys::poke _num (send s :buffer) (send s :count) :long) (incf (stream-count s) 8))
-#-(or :alpha :irix6 :x86_64)
-       (cond ((and (class _num) (= (length (_num . bv)) 2)) ;; bignum
-              (write-long (ash (elt (_num . bv) 0) 0) s)
-              (write-long (ash (elt (_num . bv) 1) -1) s))
-             ((and (class _num) (= (length (_num . bv)) 1)) ;; big1
-              (write-long (elt (_num . bv) 0) s)
-              (write-long (if (>= _num 0) 0 #xffffffff) s))
-             (t                                         ;; integer
-              (write-long _num s)(write-long (if (>= _num 0) 0 #xffffffff) s)))
+     ;; float32 _r
+       (sys::poke _r (send s :buffer) (send s :count) :float) (incf (stream-count s) 4)
+     ;; float32 _i
+       (sys::poke _i (send s :buffer) (send s :count) :float) (incf (stream-count s) 4)
      ;;
      (if (null strm) (get-output-stream-string s))))
   (:deserialize
    (buf &optional (ptr- 0))
-   ;; int64 _num
-#+(or :alpha :irix6 :x86_64)
-      (setf _num (prog1 (sys::peek buf ptr- :long) (incf ptr- 8)))
-#-(or :alpha :irix6 :x86_64)
-      (setf _num (let ((b0 (prog1 (sys::peek buf ptr- :integer) (incf ptr- 4)))
-                  (b1 (prog1 (sys::peek buf ptr- :integer) (incf ptr- 4))))
-              (cond ((= b1 -1) b0)
-                     ((and (= b1  0)
-                           (<= lisp::most-negative-fixnum b0 lisp::most-positive-fixnum))
-                      b0)
-                    ((= b1  0) (make-instance bignum :size 1 :bv (integer-vector b0)))
-                    (t (make-instance bignum :size 2 :bv (integer-vector b0 (ash b1 1)))))))
+   ;; float32 _r
+     (setq _r (sys::peek buf ptr- :float)) (incf ptr- 4)
+   ;; float32 _i
+     (setq _i (sys::peek buf ptr- :float)) (incf ptr- 4)
    ;;
    self)
   )
 
-(setf (get kronton_serv::compleX :md5sum-) "57d3c40ec3ac3754af76a83e6e73127a")
+(setf (get kronton_serv::compleX :md5sum-) "4f0be08c1f5d8c27359864de9d5522d0")
 (setf (get kronton_serv::compleX :datatype-) "kronton_serv/compleX")
 (setf (get kronton_serv::compleX :definition-)
-      "int64 num
+      "float32 r
+float32 i
 ")
 
 
 
-(provide :kronton_serv/compleX "57d3c40ec3ac3754af76a83e6e73127a")
+(provide :kronton_serv/compleX "4f0be08c1f5d8c27359864de9d5522d0")
 
 
